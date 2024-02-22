@@ -1,0 +1,2 @@
+# Automated Landmine probing simulation using MuJoCo
+This project introduces a simulated anti-tank mine prober utilizing robotics and machine learning to automate detection processes. By leveraging the MuJoCo simulation platform, we aim to reduce risks for volunteers and contribute to global demining efforts. The simulation generates point cloud data, potentially aiding future machine learning initiatives to differentiate between landmines and other objects.
