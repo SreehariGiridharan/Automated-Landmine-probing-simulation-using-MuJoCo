@@ -1,0 +1,130 @@
+<mujoco>
+	<asset>
+    	<mesh file="Support1.stl"/>
+		<mesh file="Support2.stl"/>
+		<mesh file="Stand.stl"/>
+		<mesh file="Probe_new.stl"/>
+		<mesh file="Housing_new.stl"/>
+		<mesh file="Support_rod1.stl"/>
+		<mesh file="Support_rod2.stl"/>
+		<mesh file="Probe_holder1.stl"/>
+		<mesh file="Probe_holder2.stl"/>
+		<mesh file="Mine.stl"/>
+		<mesh file="Probe_main_new.stl"/>
+		<texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2=".6 .8 1" width="256" height="256"/>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2"
+            width="100" height="100"/>
+        <material name='MatPlane' reflectance='0.5' texture="texplane" texrepeat="1 1" texuniform="true"/>
+	</asset>
+	<!-- <asset>
+    	<mesh name="tetrahedron" vertex="0 0 0  1 0 0  0 1 0  0 0 1"/>
+	</asset> -->
+
+	<option gravity= "0 0 -9.8"/>
+	<worldbody>
+		
+        <light diffuse="0.8 0.8 0.8" pos="0 0 4" dir="0 0 -1"/>
+		<geom type="plane" size="1 1 0.1" rgba="1 1 1 1"/>
+
+		<body pos="0 0 0.25">
+			<!-- <joint name="joint_1"/> -->
+			<geom type="mesh" size="0.01" mesh="Stand"/>
+			<body pos="0.1 -0.25 -0.09">
+				<geom type="box" pos= "0 -0.01 0" size="0.10 0.015 0.005"/>
+			</body>
+			<body pos="0.1 0.25 -0.09">
+				<geom type="box" pos= "0 0.01 0" size="0.10 0.015 0.005"/>
+				<body pos="-0.1 -0.25 0.09">
+					<joint name="test_bed_slider" pos="0.15 -0.26 -0.05" type="slide" axis="-1 0 0" damping="1" limited="true" range="0 0.13"/>
+			<body pos="0 0 0">
+				<!-- <joint name="joint_2"/> -->
+				<geom type="mesh"  mesh="Support1" rgba="0.839 0.839 0.839 1"/>
+				<body pos="0 0 0">
+					<!-- <joint name="joint_3"/> -->
+					<geom type="mesh" mesh="Support_rod1"/>
+				</body>
+			</body>	
+			<body pos="0 0 0">
+				<!-- <joint name="joint_4"/> -->
+				<geom type="mesh" mesh="Support2" rgba="0.839 0.839 0.839 1"/>
+				<body pos="0 0 0">
+					<!-- <joint name="joint_5"/> -->
+					<geom type="mesh" mesh="Support_rod2"/>
+				<body pos="0 0 0" euler="0 0 0">
+					<inertial pos="0 0 0" mass="10"/>
+					<joint name="axis_movement_j" pos="0.24 0 0.086" type="slide" axis="0 -1 0" damping="1" limited="true" range="-0.15 0.15"/>
+					<geom type="mesh" mesh="Probe_holder1" rgba="0.055 0.58 0.565 1"/>
+						<body pos="0 0 0">
+						<geom type="mesh" mesh="Probe_holder2" rgba="0.031 0.71 0.69 1"/>
+						<body pos="0 0 0">
+							<!-- <joint name="joint_8"/> -->
+							<geom type="mesh" mesh="Probe_main_new" rgba="0.588 0.569 0.741 1"/>
+							<body pos="0 0 0">					
+								<geom type="mesh" mesh="Housing_new" rgba="0.588 0.569 0.741 1"/>
+							</body>									
+							<body pos="-0.005 -0.0014 -0.1333" euler="0 60 0">
+								<joint name="LinearActuator_j" damping="10" stiffness="100" pos="0 0 0" type="slide" axis="0 0 -1" limited="true" range="-0.1 0.1"/>
+								<geom type="cylinder" size="0.001 0.15" rgba="0.918 0.922 0.169 1"/>
+								
+								<body pos="0 0 -0.15">
+									<geom type="cylinder" size="0.0003 0.002" rgba="0 0 1 1"/>
+									<!-- <geom type="cylinder" size="0.001 0.10" rgba="0 1 0 1"/> -->
+									<site name ="tip" size="0.001" pos="0 0 0" rgba="1 1 1 1"/>
+									
+							</body>
+							</body>
+							</body>
+						</body>
+					</body>
+				</body>
+			</body>
+			
+		</body>
+		</body>
+		</body>
+		<body pos="-0.17 0 0.01">
+			<geom type="box" size="0.15 0.25 0.005" rgba="0.651 0 0 1"/>
+			<body>
+				<geom type="box" pos = "0 -0.25 0" size="0.15 0.005 0.05" rgba="1 1 1 1" />
+			</body>
+			<body>
+				<geom type="box" pos = "0 0.25 0" size="0.15 0.005 0.05" rgba="1 1 1 1" />
+			</body>
+			<body>
+				<geom type="box" pos = "-0.15 0 0" euler="0 0 90" size="0.25 0.005 0.05" rgba="1 1 1 1" />
+			</body>
+			<body>
+				<geom type="box" pos = "0.15 0 0" euler="0 0 90" size="0.25 0.005 0.05" rgba="1 1 1 1" />
+			</body>
+		</body>
+		<body pos="-0.06 0 0.275">
+			<geom type="mesh" mesh="Mine" rgba="0.055 0.439 0 1"/>
+		</body>
+
+		<body pos="-0.15 0.1 0.03">
+			<geom type="box" size="0.02 0.02 0.02" rgba="0.11 0.118 0.129 1"/>
+		</body>
+
+		<body pos="-0.18 -0.1 0.02">
+			<!-- <inertial pos="0 0 0" mass="1"/> -->
+			<geom type="box" size="0.013 0.03 0.005" rgba="0.11 0.118 0.129 1"/>
+			<!-- <joint type="free"/> -->
+			
+		</body>
+
+		<!-- <body pos="-0.01 0 0.257">
+						<geom type="mesh" mesh="Soil_box"/>
+		</body> -->
+		
+	</worldbody>
+	<actuator>
+		<velocity name="probe_velocity" joint="LinearActuator_j" kv="10"/>
+		<velocity name="y_axis_velocity" joint="axis_movement_j" kv="5000"/>
+		<velocity name="z_axis_velocity" joint="test_bed_slider" kv="5000"/>
+
+	</actuator>
+		<sensor>
+			<force site="tip" name="probing_force"/>
+		</sensor>
+	
+</mujoco>
